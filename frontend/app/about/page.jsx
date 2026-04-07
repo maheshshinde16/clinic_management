@@ -9,11 +9,14 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-100 dark:from-slate-950 dark:via-blue-950 dark:to-cyan-950 py-16 md:py-24">
         <div className="container px-4 mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">About MediPlus</h1>
-            <p className="text-xl text-muted-foreground mb-8">
+          <div className="max-w-3xl mx-auto text-center animate-fade-up">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/80 px-3 py-1 text-xs font-semibold text-blue-700 backdrop-blur dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300">
+              Our Mission and Values
+            </span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight mb-4 md:text-5xl">About MediPlus</h1>
+            <p className="text-lg text-muted-foreground mb-8 md:text-xl">
               Providing quality healthcare services for over 15 years
             </p>
           </div>
@@ -50,10 +53,11 @@ export default function AboutPage() {
             </div>
             <div className="relative">
               <Image
-                src="/hospital-building.jpg"
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80"
                 alt="Medical Clinic"
                 width={600}
                 height={600}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="rounded-lg shadow-xl"
               />
             </div>
@@ -93,7 +97,7 @@ export default function AboutPage() {
             <p className="text-muted-foreground">These principles guide everything we do at MediPlus</p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900">
               <CardHeader className="text-center">
                 <Heart className="w-12 h-12 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
                 <CardTitle>Compassion</CardTitle>
@@ -102,7 +106,7 @@ export default function AboutPage() {
                 We treat every patient with kindness, empathy, and respect, recognizing their unique needs and concerns.
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900">
               <CardHeader className="text-center">
                 <Award className="w-12 h-12 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
                 <CardTitle>Excellence</CardTitle>
@@ -111,7 +115,7 @@ export default function AboutPage() {
                 We strive for the highest standards in medical care, continuously improving our skills and services.
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900">
               <CardHeader className="text-center">
                 <Shield className="w-12 h-12 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
                 <CardTitle>Integrity</CardTitle>
@@ -120,7 +124,7 @@ export default function AboutPage() {
                 We act with honesty and transparency in all our interactions with patients and colleagues.
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900">
               <CardHeader className="text-center">
                 <Users className="w-12 h-12 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
                 <CardTitle>Teamwork</CardTitle>

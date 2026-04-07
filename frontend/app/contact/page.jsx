@@ -71,11 +71,14 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-100 dark:from-slate-950 dark:via-blue-950 dark:to-cyan-950 py-16 md:py-24">
         <div className="container px-4 mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
-            <p className="text-xl text-muted-foreground">
+          <div className="max-w-3xl mx-auto text-center animate-fade-up">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/80 px-3 py-1 text-xs font-semibold text-blue-700 backdrop-blur dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300">
+              We Are Here to Help
+            </span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight mb-4 md:text-5xl">Contact Us</h1>
+            <p className="text-lg text-muted-foreground md:text-xl">
               We're here to help. Reach out to us with any questions or concerns.
             </p>
           </div>
@@ -86,7 +89,7 @@ export default function ContactPage() {
       <section className="py-16">
         <div className="container px-4 mx-auto">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900">
               <CardHeader className="text-center">
                 <MapPin className="w-10 h-10 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
                 <CardTitle>Our Location</CardTitle>
@@ -99,7 +102,7 @@ export default function ContactPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900">
               <CardHeader className="text-center">
                 <Phone className="w-10 h-10 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
                 <CardTitle>Phone Number</CardTitle>
@@ -112,7 +115,7 @@ export default function ContactPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900">
               <CardHeader className="text-center">
                 <Mail className="w-10 h-10 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
                 <CardTitle>Email Address</CardTitle>
@@ -125,7 +128,7 @@ export default function ContactPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900">
               <CardHeader className="text-center">
                 <Clock className="w-10 h-10 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
                 <CardTitle>Working Hours</CardTitle>
@@ -165,7 +168,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div>
-                <Card className="border-blue-200 dark:border-blue-900 shadow-lg">
+                <Card className="border-blue-200 dark:border-blue-900 shadow-xl bg-white/95 dark:bg-slate-950/95 backdrop-blur">
                   <CardContent className="p-6">
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid gap-4">

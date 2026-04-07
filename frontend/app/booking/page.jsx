@@ -5,11 +5,14 @@ export default function BookingPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-100 dark:from-slate-950 dark:via-blue-950 dark:to-cyan-950 py-16 md:py-24">
         <div className="container px-4 mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">Book Your Appointment</h1>
-            <p className="text-xl text-muted-foreground mb-8">
+          <div className="max-w-3xl mx-auto text-center animate-fade-up">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/80 px-3 py-1 text-xs font-semibold text-blue-700 backdrop-blur dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300">
+              Fast Online Booking
+            </span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight mb-4 md:text-5xl">Book Your Appointment</h1>
+            <p className="text-lg text-muted-foreground mb-8 md:text-xl">
               Schedule your visit with our specialists. Fill out the form below and we'll confirm your appointment.
             </p>
           </div>
@@ -20,8 +23,8 @@ export default function BookingPage() {
       <section className="py-16 bg-white dark:bg-gray-950">
         <div className="container px-4 mx-auto">
           <div className="max-w-2xl mx-auto">
-            <Card className="border-blue-200 dark:border-blue-900 shadow-lg">
-              <CardHeader className="bg-blue-50 dark:bg-blue-900 rounded-t-lg">
+            <Card className="border-blue-200 dark:border-blue-900 shadow-xl bg-white/95 dark:bg-slate-950/95 backdrop-blur">
+              <CardHeader className="bg-blue-50/80 dark:bg-blue-950/60 rounded-t-lg border-b border-blue-100 dark:border-blue-900">
                 <CardTitle>Book a New Appointment</CardTitle>
                 <CardDescription>Fill out the form below to schedule your appointment</CardDescription>
               </CardHeader>

@@ -14,7 +14,7 @@ export default function DoctorsPage() {
       id: 1,
       name: "Dr. John Smith",
       specialty: "Cardiology",
-      image: "/doctor-1.jpg",
+      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=900&q=80",
       rating: 4.9,
       patients: 1200,
       education: "Harvard Medical School",
@@ -31,7 +31,7 @@ export default function DoctorsPage() {
       id: 2,
       name: "Dr. Sarah Johnson",
       specialty: "Neurology",
-      image: "/doctor-2.jpg",
+      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80",
       rating: 4.8,
       patients: 950,
       education: "Johns Hopkins University",
@@ -48,7 +48,7 @@ export default function DoctorsPage() {
       id: 3,
       name: "Dr. Michael Brown",
       specialty: "Pediatrics",
-      image: "/doctor-3.jpg",
+      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=900&q=80",
       rating: 4.7,
       patients: 1050,
       education: "Stanford University",
@@ -65,7 +65,7 @@ export default function DoctorsPage() {
       id: 4,
       name: "Dr. Emily Wilson",
       specialty: "Dermatology",
-      image: "/doctor-1.jpg",
+      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80",
       rating: 4.9,
       patients: 980,
       education: "Yale School of Medicine",
@@ -82,7 +82,7 @@ export default function DoctorsPage() {
       id: 5,
       name: "Dr. Robert Davis",
       specialty: "Orthopedics",
-      image: "/doctor-2.jpg",
+      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=900&q=80",
       rating: 4.8,
       patients: 1100,
       education: "University of Pennsylvania",
@@ -99,7 +99,7 @@ export default function DoctorsPage() {
       id: 6,
       name: "Dr. Jennifer Lee",
       specialty: "Obstetrics & Gynecology",
-      image: "/doctor-3.jpg",
+      image: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&w=900&q=80",
       rating: 4.9,
       patients: 1300,
       education: "Columbia University",
@@ -117,11 +117,14 @@ export default function DoctorsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-100 dark:from-slate-950 dark:via-blue-950 dark:to-cyan-950 py-16 md:py-24">
         <div className="container px-4 mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">Our Doctors</h1>
-            <p className="text-xl text-muted-foreground mb-8">
+          <div className="max-w-3xl mx-auto text-center animate-fade-up">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/80 px-3 py-1 text-xs font-semibold text-blue-700 backdrop-blur dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300">
+              Specialist Team
+            </span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight mb-4 md:text-5xl">Our Doctors</h1>
+            <p className="text-lg text-muted-foreground mb-8 md:text-xl">
               Meet our team of experienced and dedicated healthcare professionals
             </p>
           </div>
@@ -133,7 +136,7 @@ export default function DoctorsPage() {
         <div className="container px-4 mx-auto">
           <Tabs defaultValue="all" className="w-full">
             <div className="flex justify-center mb-8">
-              <TabsList className="bg-blue-50 dark:bg-blue-900">
+              <TabsList className="h-auto flex-wrap gap-2 bg-blue-50/80 p-2 dark:bg-blue-950/50">
                 <TabsTrigger value="all">All Specialties</TabsTrigger>
                 <TabsTrigger value="cardiology">Cardiology</TabsTrigger>
                 <TabsTrigger value="neurology">Neurology</TabsTrigger>
@@ -188,9 +191,9 @@ export default function DoctorsPage() {
 
 function DoctorCard({ doctor }) {
   return (
-    <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900 overflow-hidden">
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900 overflow-hidden">
       <div className="relative h-64 overflow-hidden">
-        <Image src={doctor.image || "/placeholder.svg"} alt={doctor.name} fill className="object-cover" />
+        <Image src={doctor.image} alt={doctor.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
         <div className="absolute top-4 right-4">
           <Badge className="bg-blue-600">{doctor.specialty}</Badge>
         </div>

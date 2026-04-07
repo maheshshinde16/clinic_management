@@ -96,6 +96,121 @@ export default function AppointmentsPage() {
     }
   }
 
+  const handlePrint = () => {
+    if (!filteredAppointments.length) {
+      toast({
+        title: "No Data",
+        description: "There are no appointments to print.",
+      })
+      return
+    }
+
+    const printWindow = window.open("", "_blank", "width=1000,height=700")
+    if (!printWindow) {
+      toast({
+        title: "Popup Blocked",
+        description: "Please allow popups to print appointments.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    const rows = filteredAppointments
+      .map(
+        (appointment) => `
+          <tr>
+            <td>${appointment.patientName}</td>
+            <td>${appointment.doctorName}</td>
+            <td>${appointment.department}</td>
+            <td>${new Date(appointment.appointmentDate).toLocaleDateString()}</td>
+            <td>${appointment.appointmentTime}</td>
+            <td>${appointment.status}</td>
+          </tr>
+        `,
+      )
+      .join("")
+
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Appointments</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 24px; }
+            h1 { margin-bottom: 16px; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+            th { background: #eff6ff; }
+          </style>
+        </head>
+        <body>
+          <h1>Appointments</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Department</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </body>
+      </html>
+    `)
+    printWindow.document.close()
+    printWindow.focus()
+    printWindow.print()
+  }
+
+  const handleExport = () => {
+    if (!filteredAppointments.length) {
+      toast({
+        title: "No Data",
+        description: "There are no appointments to export.",
+      })
+      return
+    }
+
+    const headers = ["ID", "Patient", "Email", "Phone", "Doctor", "Department", "Date", "Time", "Status"]
+    const escapeCsv = (value) => `"${String(value ?? "").replace(/"/g, '""')}"`
+
+    const lines = filteredAppointments.map((appointment) =>
+      [
+        appointment._id,
+        appointment.patientName,
+        appointment.patientEmail,
+        appointment.patientPhone,
+        appointment.doctorName,
+        appointment.department,
+        new Date(appointment.appointmentDate).toLocaleDateString(),
+        appointment.appointmentTime,
+        appointment.status,
+      ]
+        .map(escapeCsv)
+        .join(","),
+    )
+
+    const csv = [headers.join(","), ...lines].join("\n")
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" })
+    const url = URL.createObjectURL(blob)
+
+    const link = document.createElement("a")
+    link.href = url
+    link.setAttribute("download", `appointments-${Date.now()}.csv`)
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+
+    toast({
+      title: "Export Complete",
+      description: "Appointments have been exported as CSV.",
+    })
+  }
+
   const getStatusBadge = (status) => {
     switch (status) {
       case "confirmed":
@@ -125,11 +240,14 @@ export default function AppointmentsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-100 dark:from-slate-950 dark:via-blue-950 dark:to-cyan-950 py-16 md:py-24">
         <div className="container px-4 mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">Your Appointments</h1>
-            <p className="text-xl text-muted-foreground mb-8">View and manage your existing appointments</p>
+          <div className="max-w-3xl mx-auto text-center animate-fade-up">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/80 px-3 py-1 text-xs font-semibold text-blue-700 backdrop-blur dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300">
+              Appointment Dashboard
+            </span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight mb-4 md:text-5xl">Your Appointments</h1>
+            <p className="text-lg text-muted-foreground mb-8 md:text-xl">View and manage your existing appointments</p>
           </div>
         </div>
       </section>
@@ -137,8 +255,8 @@ export default function AppointmentsPage() {
       {/* Appointments Section */}
       <section className="py-16 bg-white dark:bg-gray-950">
         <div className="container px-4 mx-auto">
-          <Card className="border-blue-200 dark:border-blue-900 shadow-lg">
-            <CardHeader className="bg-blue-50 dark:bg-blue-900 rounded-t-lg">
+          <Card className="border-blue-200 dark:border-blue-900 shadow-xl bg-white/95 dark:bg-slate-950/95 backdrop-blur">
+            <CardHeader className="bg-blue-50/80 dark:bg-blue-950/60 rounded-t-lg border-b border-blue-100 dark:border-blue-900">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <CardTitle>Your Appointments</CardTitle>
@@ -154,11 +272,21 @@ export default function AppointmentsPage() {
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Refresh
                   </Button>
-                  <Button variant="outline" size="sm" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                    onClick={handlePrint}
+                  >
                     <Printer className="h-4 w-4 mr-2" />
                     Print
                   </Button>
-                  <Button variant="outline" size="sm" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                    onClick={handleExport}
+                  >
                     <Download className="h-4 w-4 mr-2" />
                     Export
                   </Button>
@@ -168,7 +296,7 @@ export default function AppointmentsPage() {
             <CardContent className="p-6">
               <Tabs defaultValue="all">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
-                  <TabsList className="bg-blue-50 dark:bg-blue-900">
+                  <TabsList className="bg-blue-50/80 dark:bg-blue-950/50 p-1.5">
                     <TabsTrigger value="all">All</TabsTrigger>
                     <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
                     <TabsTrigger value="completed">Completed</TabsTrigger>
@@ -180,7 +308,7 @@ export default function AppointmentsPage() {
                       <Input
                         type="search"
                         placeholder="Search appointments..."
-                        className="pl-8 w-full sm:w-[250px] border-blue-200 focus:border-blue-400"
+                        className="pl-8 w-full sm:w-[250px] border-blue-200 focus:border-blue-400 bg-white dark:bg-slate-900"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                       />
@@ -213,7 +341,7 @@ export default function AppointmentsPage() {
                       </div>
                     </div>
                   ) : filteredAppointments.length > 0 ? (
-                    <div className="rounded-md border border-blue-200 dark:border-blue-900">
+                    <div className="rounded-xl border border-blue-200 dark:border-blue-900 overflow-hidden">
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm">
                           <thead>

@@ -10,9 +10,12 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
+      <section className="relative bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-100 dark:from-slate-950 dark:via-blue-950 dark:to-cyan-950">
         <div className="container px-4 py-16 mx-auto md:py-24 lg:py-32 lg:flex lg:items-center lg:gap-12">
-          <div className="lg:w-1/2 space-y-6">
+          <div className="lg:w-1/2 space-y-6 animate-fade-up">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/80 px-3 py-1 text-xs font-semibold text-blue-700 backdrop-blur dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300">
+              Trusted Care, Modern Clinic
+            </span>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               We Provide <span className="text-blue-600 dark:text-blue-400">Medical</span> Services <br />
               That You Can <span className="text-blue-600 dark:text-blue-400">Trust!</span>
@@ -30,12 +33,13 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="hidden lg:block lg:w-1/2">
+          <div className="hidden lg:block lg:w-1/2 animate-fade-up-delay">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20250420-WA0003.jpg-D1KIdpqpBy0Rljt4sgqyatU9WsFSfh.jpeg"
+              src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80"
               alt="Doctor"
               width={600}
               height={600}
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover rounded-lg shadow-xl"
               priority
             />
@@ -53,7 +57,7 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <Card className="bg-blue-600 text-white hover:shadow-lg transition-all">
+            <Card className="bg-blue-600 text-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-fade-in">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Phone className="h-5 w-5" />
@@ -65,7 +69,7 @@ export default function Home() {
                 <p className="font-bold">+880 1234 56789</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900 animate-fade-in">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
                   <CalendarDays className="h-5 w-5" />
@@ -81,7 +85,7 @@ export default function Home() {
                 </Button>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
+            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-900 animate-fade-in">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
                   <Clock className="h-5 w-5" />
@@ -113,10 +117,11 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Image
-                src="/medical-team.jpg"
+                src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80"
                 alt="Medical Team"
                 width={600}
                 height={400}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="rounded-lg shadow-xl object-cover"
               />
             </div>
@@ -174,7 +179,7 @@ export default function Home() {
             </p>
           </div>
           <div className="max-w-2xl mx-auto">
-            <Card className="border-blue-200 dark:border-blue-900 shadow-lg">
+            <Card className="border-blue-200 dark:border-blue-900 shadow-xl bg-white/95 dark:bg-slate-950/95 backdrop-blur">
               <CardContent className="p-6">
                 <BookingForm />
               </CardContent>
@@ -197,21 +202,21 @@ export default function Home() {
                 comment:
                   "The doctors at MediPlus are incredibly knowledgeable and caring. I always feel well taken care of during my visits.",
                 rating: 5,
-                image: "/patient-1.jpg",
+                image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80",
               },
               {
                 name: "Michael Brown",
                 comment:
                   "I've been coming to MediPlus for years. The staff is friendly, appointments are easy to schedule, and the care is top-notch.",
                 rating: 5,
-                image: "/patient-2.jpg",
+                image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&q=80",
               },
               {
                 name: "Emily Wilson",
                 comment:
                   "The online booking system is so convenient! I was able to schedule my appointment quickly and received excellent care.",
                 rating: 4,
-                image: "/patient-3.jpg",
+                image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80",
               },
             ].map((testimonial, i) => (
               <Card key={i} className="hover:shadow-lg transition-all border-blue-200 dark:border-blue-900">
@@ -219,9 +224,10 @@ export default function Home() {
                   <div className="flex items-center gap-4 mb-4">
                     <div className="relative w-12 h-12 rounded-full overflow-hidden">
                       <Image
-                        src={testimonial.image || "/placeholder.svg"}
+                        src={testimonial.image}
                         alt={testimonial.name}
                         fill
+                        sizes="48px"
                         className="object-cover"
                       />
                     </div>

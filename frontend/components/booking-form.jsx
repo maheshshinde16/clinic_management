@@ -14,6 +14,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
 import { toast } from "@/components/ui/use-toast"
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+
 export default function BookingForm() {
   const [date, setDate] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -52,7 +54,7 @@ export default function BookingForm() {
 
     try {
       // Connect to your backend API
-      const response = await fetch("http://localhost:8000/api/appointments", {
+      const response = await fetch(`${API_BASE_URL}/api/appointments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +95,10 @@ export default function BookingForm() {
       console.error("Error booking appointment:", error)
       toast({
         title: "Error",
-        description: "There was a problem booking your appointment. Please try again.",
+        description:
+          error?.message === "Failed to fetch"
+            ? "Unable to reach backend API. Make sure backend is running and CORS is configured."
+            : "There was a problem booking your appointment. Please try again.",
         variant: "destructive",
       })
     } finally {

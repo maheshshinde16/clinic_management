@@ -29,36 +29,36 @@ export default function SiteHeader() {
           <span>MediPlus</span>
         </div>
         <nav className="hidden md:flex items-center space-x-6 ml-6">
-          <Link href="/" className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400">
+          <Link href="/" className="rounded-full px-3 py-1.5 text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 transition-all duration-200 hover:bg-blue-100 hover:-translate-y-0.5 dark:text-blue-300 dark:bg-blue-950/40 dark:border-blue-900 dark:hover:bg-blue-900/50">
             Home
           </Link>
           <Link
             href="/doctors"
-            className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+            className="rounded-full px-3 py-1.5 text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 transition-all duration-200 hover:bg-blue-100 hover:-translate-y-0.5 dark:text-blue-300 dark:bg-blue-950/40 dark:border-blue-900 dark:hover:bg-blue-900/50"
           >
             Doctors
           </Link>
           <Link
             href="/appointments"
-            className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+            className="rounded-full px-3 py-1.5 text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 transition-all duration-200 hover:bg-blue-100 hover:-translate-y-0.5 dark:text-blue-300 dark:bg-blue-950/40 dark:border-blue-900 dark:hover:bg-blue-900/50"
           >
             Appointments
           </Link>
           <Link
             href="/booking"
-            className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+            className="rounded-full px-3 py-1.5 text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 transition-all duration-200 hover:bg-blue-100 hover:-translate-y-0.5 dark:text-blue-300 dark:bg-blue-950/40 dark:border-blue-900 dark:hover:bg-blue-900/50"
           >
             Book Appointment
           </Link>
           <Link
             href="/contact"
-            className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+            className="rounded-full px-3 py-1.5 text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 transition-all duration-200 hover:bg-blue-100 hover:-translate-y-0.5 dark:text-blue-300 dark:bg-blue-950/40 dark:border-blue-900 dark:hover:bg-blue-900/50"
           >
             Contact
           </Link>
           <Link
             href="/about"
-            className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+            className="rounded-full px-3 py-1.5 text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 transition-all duration-200 hover:bg-blue-100 hover:-translate-y-0.5 dark:text-blue-300 dark:bg-blue-950/40 dark:border-blue-900 dark:hover:bg-blue-900/50"
           >
             About Us
           </Link>

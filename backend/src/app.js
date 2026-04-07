@@ -7,10 +7,24 @@ import appointmentRoutes from "./routes/appointment.routes.js"
 dotenv.config({ path: ".env" })
 
 const app = express()
+const allowedOrigins = new Set([
+  "http://localhost:3000",
+  "http://localhost:3001",
+  ...(process.env.CORS_ORIGIN || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean),
+])
+
 app.use(
   Cors({
-    origin: process.env.CORS_ORIGIN,
-    Credential: true,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.has(origin)) {
+        return callback(null, true)
+      }
+      return callback(new Error("Not allowed by CORS"))
+    },
+    credentials: true,
   })
 )
 
