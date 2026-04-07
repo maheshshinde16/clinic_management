@@ -2,9 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "experimentalServices": {
     "frontend": {
-      "entrypoint": "frontend/package.json",
+      "entrypoint": "frontend",
       "framework": "nextjs",
-      "routePrefix": "/"
+      "routePrefix": "/",
+      "installCommand": "corepack pnpm install --frozen-lockfile",
+      "buildCommand": "corepack pnpm run build"
     },
     "backend": {
       "entrypoint": "backend/src/index.js",
